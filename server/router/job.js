@@ -3,7 +3,7 @@ const uuid      = require('uuid').v4;
 const {
     TASK_TYPES,
     TASK_STATUS_TYPES
-}               = require('../enum');    
+}               = require('../util/enum');    
 
 module.exports = function(context) {
     const router = express.Router();
@@ -29,16 +29,17 @@ module.exports = function(context) {
     
     router.post('/job', async (req, res) => {
         const tasks = req.body['input_files'].map(filename => ({
-            "task_uid"  : uuid(),
-            "task_type" : TASK_TYPES.MAP,
-            "input"     : filename,
-            "status"    : TASK_STATUS_TYPES.PREPARE,
-            "fail_cnt"  : 0,
-            "start_time": 0,
-            "cost_time" : 0,
-            "finish_record": 0,
-            "failed_record": 0
+            "task_uid"      : uuid(),
+            "task_type"     : TASK_TYPES.MAP,
+            "input"         : filename,
+            "status"        : TASK_STATUS_TYPES.PREPARE,
+            "fail_cnt"      : 0,
+            "start_time"    : 0,
+            "cost_time"     : 0,
+            "finish_record" : 0,
+            "failed_record" : 0,
         }));
+ 
         const job = {
             ...req.body,
             tasks,

@@ -2,7 +2,7 @@ const express       = require('express');
 const { 
     TASK_TYPES, 
     TASK_STATUS_TYPES,
-}                   = require('../enum');
+}                   = require('../util/enum');
 const fs            = require('fs').promises;
 
 module.exports = function (context) {

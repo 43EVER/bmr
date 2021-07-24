@@ -8,7 +8,7 @@ const uuid          = require('uuid').v4;
 
 const job_status = {
     // recover from checkpoint
-    ...JSON.parse(fs.readFileSync(`${__dirname}/job_status`, { encoding: 'utf8' })),
+    ...JSON.parse(fs.readFileSync(`${__dirname}/job_status.json`, { encoding: 'utf8' })),
     
     get_job(job_uid) {
         return this[job_uid] ?? {};
@@ -209,5 +209,11 @@ setInterval(() => {
         }
     }
 }, 5000);
+
+// checkpoint
+setInterval(() => {
+    
+}, 10000);
+
 
 module.exports = { job_status };
